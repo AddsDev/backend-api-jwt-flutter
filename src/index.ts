@@ -2,7 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
-import fs from 'fs';
 import cors from 'cors';
 import api from './routes';
 
@@ -24,6 +23,7 @@ app.use(express.static('public'));
 
 const PORT = process.env.PORT || 9000;
 mongoose
+  .set('strictQuery', false)
   .connect(process.env.MONGO!, {})
   .then(() => {
     app.listen(PORT, () => {
